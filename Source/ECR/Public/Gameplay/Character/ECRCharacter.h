@@ -362,4 +362,9 @@ private:
 
 	UFUNCTION()
 	void OnRep_MinimalAscState();
+
+	/** Calculates effective damage taking armor rating and damage multiplier into account */
+	UFUNCTION(BlueprintCallable, Category = "ECR|Combat")
+	virtual float CalculateEffectiveDamage(float BaseDamage, float ArmorRating, float DamageMultiplier) const;
+
 };

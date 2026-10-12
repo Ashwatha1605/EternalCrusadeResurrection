@@ -1287,3 +1287,15 @@ bool FMinimalASCState::NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSu
 
 	return true;
 }
+
+
+float AECRCharacter::CalculateEffectiveDamage(float BaseDamage, float ArmorRating, float DamageMultiplier) const
+{
+	if (DamageMultiplier <= 0.0f)
+	{
+		return 0.0f;
+	}
+	// Calculates damage reduction through armor rating and applies multiplier
+	float ArmorReduction = FMath::Clamp(ArmorRating / 100.0f, 0.0f, 0.8f);
+	return (BaseDamage * (1.0f - ArmorReduction)) / DamageMultiplier;
+}
